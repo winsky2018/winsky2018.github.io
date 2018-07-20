@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>英雄联盟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            background: url("./imgs/bg.jpg") no-repeat;
+            background-size: cover;
+        }
+        .slider{
+            width: 980px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            margin-left: -490px;
+            top: 100px;
+            /* border: 1px solid #000;  */
+        }
+        .slider .slider_main>li{
+            list-style: none;
+            position: absolute;
+        }
+        .slider .slider_main>li>img{
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+        }
+        .slider .slider_btn .btn{
+            width: 60px;
+            height: 80px;
+            font-size: 60px;
+            position: absolute;
+            top: 50%;
+            background-color: rgba(10, 10, 10, 0.85);
+            color: #fff;
+            text-align: center;
+            line-height: 80px;
+            display: none;
+            z-index: 9999;
+            cursor: pointer;
+        }
+        .slider:hover .btn{
+            display: block;
+        }
+        .left_btn{
+            left: 0;
+        }
+        .right_btn{
+            right: 0;
+        }
+        .circle{
+            width: 100%;
+            height: 20px;
+            position: absolute;
+            bottom: -30px;
+            left: 0px;
+            text-align: center;
+            line-height: 20px;
+        }
+        .circle span{
+            display: inline-block;
+            width: 18px;
+            height: 4px;
+            margin: 0 30px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .circle .active{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <ul class="slider_main">
+            <li>
+                <img src="./imgs/1.jpg">
+            </li>
+            <li>
+                <img src="./imgs/2.jpg">
+            </li>
+            <li>
+                <img src="./imgs/3.jpg">
+            </li>
+            <li>
+                <img src="./imgs/4.jpg">
+            </li>
+            <li>
+                <img src="./imgs/5.jpg">
+            </li>
+            <li>
+                <img src="./imgs/6.jpg">
+            </li>
+            <li>
+                <img src="./imgs/7.jpg">
+            </li>
+            <li>
+                <img src="./imgs/8.jpg">
+            </li>
+            <li>
+                <img src="./imgs/9.jpg">
+            </li>
+            <li>
+                <img src="./imgs/10.jpg">
+            </li>
+        </ul>
+        <div class="slider_btn">
+            <div class="btn left_btn">&lt;</div>
+            <div class="btn right_btn">&gt;</div>
+        </div>
+        <div class="circle">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <audio class="BGM" src="./src/BGM.mp3" autoplay="autoplay" loop="loop"></audio>
+        <audio class="hero"></audio>
+        <audio class="boom" src="./src/boom.mp3"></audio>
+    </div>
+    <script>
+
+        var left_btn = document.getElementsByClassName('left_btn')[0];
+        var right_btn = document.getElementsByClassName('right_btn')[0];
+        var oHero = document.getElementsByClassName('hero')[0];
+        var oBgm = document.getElementsByClassName('BGM')[0];
+        var oBoom = document.getElementsByClassName('boom')[0];
+        var oLis = document.getElementsByTagName('li');
+        var len = oLis.length;
+        var oSpan = document.getElementsByTagName('span');
+        var num = 0;
+
+        oHero.volume = 1;
+        oBoom.volume = 1;
+        oBgm.volume = 1;
+        
+        var json = [{
+                opacity: 0
+            },
+            {
+                width: 490,
+                top: 150,
+                left: 0,
+                opacity: 0.8,
+                zIndex: 30
+            },
+            {
+                width: 600,
+                top: 100,
+                left: 190,
+                opacity: 1,
+                zIndex: 40
+            },
+            {
+                width: 490,
+                top: 150,
+                left: 490,
+                opacity: 0.8,
+                zIndex: 30
+            },
+            {
+                opacity: 0
+            },
+            {
+                opacity: 0
+            },
+            {
+                opacity: 0
+            },
+            {
+                opacity: 0
+            },
+            {
+                opacity: 0
+            },
+            {
+                opacity: 0
+            }];
+
+        
+        left_btn.onclick = function (){
+            move("left - right");
+            oHero.src = "./src/"+num+".mp3";
+            oHero.play();
+            oBoom.play();
+            oBgm.play();
+        }
+        right_btn.onclick = function (){
+            move('right - left');
+            oHero.src = "./src/"+num+".mp3";
+            oHero.play();
+            oBoom.play();
+            oBgm.play();
+
+        }
+
+        function move(direction){
+            if(direction === "left - right"){
+                json.push(json.shift());
+                if(num <= 0){
+                    num = len - 1;
+                }else{
+                    num --;
+                }
+            }else if(direction === 'right - left' || direction === "undefined"){
+                json.unshift(json.pop());
+                if(num >= len -1){
+                    num = 0;
+                }else{
+                    num ++;
+                }
+            }
+
+            json.forEach(function (ele, index){
+                startMove(oLis[index], ele, function (){
+                    
+                });
+                
+            });
+            change(num);
+            console.log(num);
+           
+        }
+
+        function change(index){
+            document.getElementsByClassName('active')[0].className = '';
+            oSpan[index].className = 'active';
+            
+        }
+
+        for(var i = 0; i < len; i++){
+            (function (j){
+                oSpan[j].onclick = function (){
+                    document.getElementsByClassName('active')[0].className = '';
+                    oSpan[j].className = 'active';  
+                    if(j < num){
+                        while(num - j){
+                            move("left - right");
+                            console.log(num);
+                        }
+                    }else{
+                        while(j - num){
+                            move("right - left");
+                            console.log(num);
+                        }
+                    }
+                    oHero.src = "./src/"+num+".mp3";
+                    oHero.play();
+                    oBoom.play();
+
+                }
+            })(i)
+        }
+
+        
+
+
+            /**
+         * 功能函数：获取计算样式
+        */
+        function getStyle(obj, prop){
+            if(window.getComputedStyle){
+               return window.getComputedStyle(obj, null)[prop];
+            }else{
+                return obj.currentStyle(prop);
+            }
+        }
+        
+
+        /**
+         * 
+         * 功能函数：运动框架。
+         * 
+         * 根据传入的json对象来决定obj的变化。
+        */
+        function startMove(obj, json, callBack){
+            clearInterval(obj.timer);
+            var speed, origin, target;
+            obj.timer = setInterval(function (){
+
+                var flag = true;
+                //遍历对象
+                for(var prop in json){
+                    //遍历传入对象属性
+                    if(prop === "opacity"){
+                        origin = parseFloat(getStyle(obj, prop)) * 100;
+                        target = json[prop] * 100;
+                    }else{
+                        origin = parseInt(getStyle(obj, prop));
+                        target = parseInt(json[prop]);
+                    }
+
+                    speed = (target - origin) / 15;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+                    //赋值
+                    if(prop === "opacity"){
+                        obj.style[prop] = (origin + speed) / 100;
+                    }else if(prop == "zIndex"){
+                        obj.style[prop] = json[prop];
+                    }else{
+                        obj.style[prop] = origin + speed + 'px';
+                    }
+
+                    //判断是否到达目标点上
+                    if(target !== origin){
+                        flag = false;
+                    }
+                }
+                
+                //如果到达目标点上，判断是否传入callBack，若传入，执行它
+                if(flag){
+                    clearInterval(obj.timer);
+                    typeof(callBack) == "function" ? callBack() : '';
+                }
+            }, 20);
+        }
+
+    </script>
+</body>
+
+</html>
