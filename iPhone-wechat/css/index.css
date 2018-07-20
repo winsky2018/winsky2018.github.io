@@ -1,0 +1,246 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(13, 207, 133);
+    overflow: hidden;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+.wrapper .iphone{
+    position: absolute;
+    top: 100px;
+    width: 230px;
+    height: 490px;
+    border-top: 50px solid rgba(0, 0, 0, 1);
+    border-bottom: 70px solid rgba(0, 0, 0, 1);
+    border-right: 5px solid rgba(0, 0, 0, 1);
+    border-left: 5px solid rgba(0, 0, 0, 1);
+    box-sizing: border-box;
+    border-radius: 40px;
+    box-shadow: 1px 1px 1px 3px rgba(8, 8, 8, 0.9);
+}
+.iphone_one:hover .circle{
+    border-color: rgba(250, 0, 0, 0.9);
+    background-color: #222;
+}
+
+.iphone .circle {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    bottom: -57px;
+    left: 50%;
+    margin-left: -20px;
+    border: 2px solid rgba(50, 0, 0, 0.9);
+    background-color: #111;
+    border-radius: 50%;
+    transition: all 1s ease-in-out;
+}
+
+.iphone>span {
+    position: absolute;
+    background-color: #222;
+    border-radius: 5px;
+}
+
+.right {
+    width: 4px;
+    height: 22px;
+    right: -11px;
+    top: 70px;
+}
+
+.left {
+    width: 3px;
+    height: 22px;
+    left: -8px;
+}
+
+.left1 {
+    height: 16px;
+    top: 10px;
+
+}
+
+.left2 {
+    top: 60px;
+
+}
+
+.left3 {
+    top: 105px;
+}
+
+.top1 {
+    width: 8px;
+    height: 8px;
+    top: -28px;
+    left: 60px;
+    opacity: 0.7;
+}
+.top2 {
+    width: 50px;
+    height: 5px;
+    top: -26px;
+    left: 90px;
+    opacity: 0.7;
+}
+.wrapper .iphone_one{
+    left: 200px;
+}
+.wrapper .iphone_two{
+    right: 200px;
+    border-top: 50px solid rgba(251, 251, 250, 1);
+    border-bottom: 70px solid rgba(251, 251, 250, 1);
+    border-right: 5px solid rgba(251, 251, 250, 1);
+    border-left: 5px solid rgba(251, 251, 250, 1);
+    box-shadow: 1px 1px 1px 3px rgb(104, 89, 7);
+}
+
+.wrapper .iphone_two .circle{
+    border: 2px solid rgb(196, 196, 95);
+    background-color: #fff;
+    transition: all 1s ease-in-out;
+}
+.iphone_two:hover .circle{
+    border-color: rgba(109, 6, 228, 0.9);
+    background-color: rgb(170, 192, 70);
+}
+.wrapper .iphone_two span{
+    background-color: rgb(107, 92, 5);
+}
+
+.wrapper .iphone .box{
+    width: 100%;   /*220px*/
+    height: 370px;
+    /* background-color: green; */
+   
+}
+.wrapper .iphone .box1{
+    width: 221px;  
+    background: url("../imgs/2.jpg") no-repeat;
+    background-size: cover;
+}
+.wrapper .iphone .box2{
+    width: 221px;  
+    background: url("../imgs/3.jpg") no-repeat;
+    background-size: cover;
+}
+.wrapper .box .header{
+    width: 100%;
+    height: 35px;
+    position: relative;
+}
+.wrapper .box .header>span{
+    width: 100%;
+    height: 15px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: url("../imgs/1234.png")  no-repeat;
+    background-size: 221px 22px;
+  
+
+}
+.wrapper .box .header>p{
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    background-color: rgba(26, 22, 22, 0.86);
+    color: #fff;
+}
+.wrapper .box .content{
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    
+}
+.wrapper .box .content .slider{
+    width: 4px;
+    height: 16px;
+    border-radius: 4px;
+    background-color: #444;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0;
+    
+}
+.wrapper .box .content .move{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+}
+.wrapper .box .content .move>li{
+    max-width: 150px;
+    opacity: 0.9;
+    padding: 5px;
+    margin: 15px 0px;
+    position: relative;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: green;
+
+}
+.wrapper .box .move>li>img{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.wrapper .box .move>li> .right_img{
+    /* background: url(./imgs/17.jpg) no-repeat;
+    background-size: 30px 30px; */
+    top: -5px;
+    right: -35px;
+}
+.wrapper .box .move>li> .left_img{
+    /* background: url(./imgs/18.jpg) no-repeat;
+    background-size: 30px 30px; */
+    top: -5px;
+    left: -35px;
+}
+.wrapper .box .footer{
+    width: 100%;
+    height: 35px;
+    border-top: 1px solid #aaa;
+    background-color: rgba(0, 0, 0, 0.638);
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+.wrapper .box .footer .text{
+    border: 1px solid #ccc;
+    height: 20px;
+    border-radius: 4px;
+}
+.wrapper .box .footer .btn{
+    border: 1px solid #ccc;
+    height: 22px;
+    width: 36px;
+    background-color: rgb(6, 135, 240);
+    border-radius: 4px;
+    vertical-align: bottom;
+    font-size: 12px;
+    color: #fff;
+}
